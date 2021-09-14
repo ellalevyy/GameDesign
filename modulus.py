@@ -16,7 +16,7 @@ if(num %2 ==0):
 else:
     print("the number is odd")
 
-num2=float(input("give me any number no more than 2 decimals")
+num2=float(input("give me any number no more than 2 decimals"))
 print(num2)
 print(num + num2)
 print(num2%2)

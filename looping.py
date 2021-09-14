@@ -12,7 +12,7 @@ star= int(input("please enter number of stars "))#allow to get vallues from the 
 #loop
 #Type cast force a chance in a type of interger
 line = star
-for lncounter in range(line):4
+for lncounter in range(line):
     for counter in range(star):
         print("*", end=" ")
     print()

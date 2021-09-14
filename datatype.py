@@ -1,5 +1,6 @@
 #Ella-Rose Levy
 #09-13-21
+#Data types and how to check for the write data
 import os
 
 os.system('cls')
