@@ -17,8 +17,8 @@ for lncounter in range(line):
         print("*", end=" ")
     print()
 print("thank you")
-for lncounter in range(line):4
-for counter in range(star):
+for lncounter in range(line):
+    for counter in range(star):
         print("*", end=" ")
     print()
 print("thank you")
