@@ -14,10 +14,20 @@ def updateWord(word, guesses, letCount):
             print('_', end=' ')
     return letCount
 #define function for Menu
+name= input("What is your name? ")
+#lists of worlds for guessing    
+animals=["tiger", "elephant", "cat", "dog", "cow", "frog"]
+fruits=["banana", "strawberries", "Cherry", "grape", "orange", "apple"]
+compParts=["keyboard", "Monitors", "computer","trackpad", "case","Operating System"]
+
+maxScore=0 #to store highest Score
+
+
 def Menu():
-    check = False
-    while check == False:
+    check = True
+    while check:
         print("You are playing hangman. Please select a category you want to play.")
+        print("Type one letter at a time to guess the word.")
         print("########################################")
     ## put instructions right above menu
         print("#                MENU                  #")
@@ -37,14 +47,13 @@ def Menu():
         print(sel)
         try:
             sel=int(sel)
-            check=True
-        except ValueError:
             check=False
+        except ValueError:
             print("Please enter a number")
     
     
     # add the Try and except before you force sel to be an int
-    print("Type one letter at a time to guess the word.")
+    
     return sel
 
 #Function to select the Word
@@ -92,61 +101,66 @@ def Run_Through(sel, name, maxScore):
     print(maxScore)
     return maxScore
 
-#lists of worlds for guessing    
-animals=["tiger", "elephant", "cat", "dog", "cow", "frog"]
-fruits=["banana", "strawberries", "Cherry", "grape", "orange", "apple"]
-compParts=["keyboard", "Monitors", "computer","trackpad", "case","Operating System"]
 
-name= input("What is your name? ")
+
+
 
 #openes save file for reading
-f=open("save.txt","r+")
-userData=[]
-#splits each line into name, highscore, and number
-for line in f.readlines():
-    splitLine=line.split("\t")
-    print(splitLine)
-    splitLine[2].replace("\n", "")
-    splitLine[2]=int(splitLine[2])
-    userData.append(splitLine)
-#deletes the file
-f.seek(0)
-f.truncate()
+# f=open("save.txt","r+")
+# userData=[]
+# #splits each line into name, highscore, and number
+# for line in f.readlines():
+#     splitLine=line.split("\t")
+#     print(splitLine)
+#     splitLine[2].replace("\n", "")
+#     splitLine[2]=int(splitLine[2])
+#     userData.append(splitLine)
+# #deletes the file
+# f.seek(0)
+# f.truncate()
 
-maxScore=0 #to store highest Score
+
 sel=Menu()
-
+print("Outside while")
 #Shows the result of selection 
-while sel==1 or sel==2 or sel==3 or sel==4:
+while sel<5:
+    print("I am in while loop")
+    print("sel = %i", sel)
     if sel==1 or sel==2 or sel==3:
-        maxScore=Run_Through(sel, name, maxScore)
-        sel=Menu()
-    elif sel==4:
-        print(userData)
-    else:
-        print(maxScore)
-
+        maxScore=Run_Through(sel, name, maxScore) 
+    if sel==4:
+        print("i am in 4")
+        # hhhh
+        
+    
+    sel=Menu()
+    
+    if sel==5:
+        f=open("save.txt", 'a')
+        f.write (name + "\t Highest score:\t"+str(maxScore)+"\n")
+        f.close()
+        exit()
 #checks to see if the current player has played before and ubdates the new highscore
-didFindUser=False
-for user in userData:
-    if user[0] == name:
-        didFindUser=True
-        if user[2] <= maxScore:
-            user[2] = maxScore
+# didFindUser=False
+# for user in userData:
+#     if user[0] == name:
+#         didFindUser=True
+#         if user[2] <= maxScore:
+#             user[2] = maxScore
 
-#Opened txt file for writting 
-f=open("save.txt","w")
+# #Opened txt file for writting 
+# f=open("save.txt","w")
 
-#If user was not found, this write the user's name into the highscore list
-if didFindUser is False:
-    f.write (name + "\t Highest score:\t"+str(maxScore)+"\n")
+# #If user was not found, this write the user's name into the highscore list
+# if didFindUser is False:
+#     f.write (name + "\t Highest score:\t"+str(maxScore)+"\n")
 
 #prints information of past players
-for user in userData:
-    f.write(user[0])
-    f.write("\t")
-    f.write(user[1])
-    f.write("\t")
-    f.write(str(user[2]))
-    f.write("\n")
+# for user in userData:
+#     f.write(user[0])
+#     f.write("\t")
+#     f.write(user[1])
+#     f.write("\t")
+#     f.write(str(user[2]))
+#     f.write("\n")
     
