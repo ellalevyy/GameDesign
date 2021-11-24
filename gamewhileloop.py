@@ -121,16 +121,16 @@ def Run_Through(sel, name, maxScore):
 
 
 sel=Menu()
-print("Outside while")
 #Shows the result of selection 
 while sel<5:
-    print("I am in while loop")
-    print("sel = %i", sel)
     if sel==1 or sel==2 or sel==3:
         maxScore=Run_Through(sel, name, maxScore) 
     if sel==4:
-        print("i am in 4")
-        # hhhh
+#prints the newest high score in save.txt
+        file = open("save.txt","r")
+        for line in file.readlines():
+            print(line.strip('\n'))
+        input('Are you ready to return to the menu? ')
         
     
     sel=Menu()
